@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Menu Spécial Ramadan - Grey Corner</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green-dark: #021b16;
+  --gold: #d9a441;
+  --gold-soft: #f1e3b1;
+  --text-light: #f9fafb;
+  --text-muted: #d1d5db;
+}
+
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
+  font-family:"Poppins",sans-serif;
+  background:radial-gradient(circle at top,#064e3b 0%,#021b16 45%,#010b0a 100%);
+  color:var(--text-light);
+  line-height:1.6;
+}
+
+header {
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(12px);
+  background:rgba(0,0,0,0.6);
+  border-bottom:1px solid rgba(217,164,65,0.25);
+}
+.container {width:min(1100px,92%);margin:auto;}
+.nav {display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0;}
+
+.btn-primary {
+  background:var(--gold);
+  padding:0.6rem 1.3rem;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* Lightbox */
+.lightbox {
+  position:fixed; inset:0;
+  background:rgba(0,0,0,0.8);
+  display:none; place-items:center;
+  z-index:2000;
+}
+.lightbox img, .lightbox video {
+  max-width:92%; max-height:90vh;
+  border-radius:14px; 
+}
+.lightbox.show {display:grid;}
+.close-lightbox {position:absolute;top:20px;right:30px;font-size:2rem;cursor:pointer;color:white;}
+
+/* Grid */
+.gallery-grid, .menu-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1rem;
+}
+
+.thumb {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.menu-card {
+  background:rgba(0,0,0,0.45);
+  padding:1rem;
+  border-radius:14px;
+  border:1px solid rgba(217,164,65,0.35);
+}
+
+.menu-card-header {
+  display:flex;justify-content:space-between;margin-bottom:0.5rem;
+}
+
+.menu-card-header h3 {color:var(--gold);}
+.menu-chip {
+  font-size:0.7rem;
+  padding:0.15rem 0.6rem;
+  border-radius:12px;
+  border:1px solid var(--gold);
+  color:var(--gold-soft);
+}
+.menu-list {list-style:none;color:var(--text-muted);}
+
+.video-thumb {position:relative;}
+.video-thumb::after {
+  content:"▶";
+  position:absolute;
+  font-size:48px;
+  color:white;
+  text-shadow:0 0 15px rgba(0,0,0,0.8);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+</style>
+
+<script>
+function openLightbox(src, isVideo=false) {
+  const box=document.getElementById("lightbox");
+  const img=document.getElementById("lightbox-img");
+  const vid=document.getElementById("lightbox-video");
+
+  if(isVideo){
+    img.style.display="none";
+    vid.style.display="block";
+    vid.src=src;
+  } else {
+    vid.style.display="none";
+    img.style.display="block";
+    img.src=src;
+  }
+  box.classList.add("show");
+}
+
+function closeLightbox(){
+  document.getElementById("lightbox").classList.remove("show");
+  document.getElementById("lightbox-video").pause();
+}
+</script>
+</head>
+
+<body>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="close-lightbox">&times;</span>
+  <img id="lightbox-img" src="">
+  <video id="lightbox-video" controls></video>
+</div>
+
+<header>
+  <div class="container nav">
+    <img src="images/logo.jpg" alt="Logo" style="height:60px;">
+    <a href="tel:0535940168"><button class="btn-primary">RESERVER A PARTIR DE 16 H</button></a>
+  </div>
+</header>
+
+<main class="container">
+<h1 style="margin:2rem 0;color:var(--gold)">Menu Spécial Ramadan</h1>
+
+<section id="menu" style="margin-top:3rem;">
+<h2 style="color:var(--gold-soft);margin-bottom:1rem;">IFTAR COMPLET – 95 DH</h2>
+
+<div class="menu-grid">
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Soupe</h3><span class="menu-chip">Traditionnelle</span></div>
+  <img src="images/soupe.jpg" class="thumb" onclick="openLightbox('images/soupe.jpg')">
+  <ul class="menu-list"><li>Harira</li></ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Complements</h3><span class="menu-chip">Gourmandises</span></div>
+  <img src="images/accompagnements.jpg" class="thumb" onclick="openLightbox('images/accompagnements.jpg')">
+  <ul class="menu-list">
+    <li>Dattes</li><li>Œuf</li><li>Chebakia</li><li>Briouatte amande</li>
+  </ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Beldi</h3><span class="menu-chip">Pains & crêpes</span></div>
+  <img src="images/beldi.jpg" class="thumb" onclick="openLightbox('images/beldi.jpg')">
+  <ul class="menu-list">
+    <li>Msemen nature</li><li>Harcha</li><li>Baghrir</li><li>Msemen agrich</li>
+  </ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Salés</h3><span class="menu-chip">Snacking</span></div>
+  <img src="images/salés.jpg" class="thumb" onclick="openLightbox('images/salés.jpg')">
+  <ul class="menu-list">
+    <li>Mini pizza au thon</li><li>Nem asiatique</li><li>Cigare fromage</li><li>Quiche au poulet</li>
+  </ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Salades</h3><span class="menu-chip">Fraîcheur</span></div>
+  <img src="images/salade.jpg" class="thumb" onclick="openLightbox('images/salade.jpg')">
+  <ul class="menu-list">
+    <li>Salade variée</li><li>Tomates & concombre</li><li>Carottes râpées</li>
+  </ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Tagines</h3><span class="menu-chip">Maison</span></div>
+  <img src="images/tagines.jpg" class="thumb" onclick="openLightbox('images/tagines.jpg')">
+  <ul class="menu-list">
+    <li>Mqila merguez aux œufs</li><li>Mqila viande hachée aux œufs</li>
+  </ul>
+</article>
+
+<article class="menu-card">
+  <div class="menu-card-header"><h3>Boissons</h3><span class="menu-chip">À volonté</span></div>
+  <img src="images/boissons.jpg" class="thumb" onclick="openLightbox('images/boissons.jpg')">
+  <ul class="menu-list">
+    <li>Verre de lait</li><li>Jus d’orange</li><li>Boisson chaude</li><li>Eau minérale</li>
+  </ul>
+</article>
+
+</div>
+</section>
+
+<section style="margin-top:3rem;">
+<h2 style="color:var(--gold-soft);margin-bottom:1rem;">Vidéo Ramadan</h2>
+<div class="gallery-grid">
+  <div class="gallery-item video-thumb">
+    <img src="images/video-thumbnail.jpg" class="thumb" onclick="openLightbox('images/ramadan.mp4', true)">
+  </div>
+</div>
+</section>
+
+<section id="galerie" style="margin-top:3rem;">
+<h2 style="color:var(--gold-soft);margin-bottom:1rem;">Galerie Ramadan</h2>
+<div class="gallery-grid">
+  <img src="images/ramadan1.jpg" class="thumb" onclick="openLightbox('images/ramadan1.jpg')">
+  <img src="images/ramadan2.jpg" class="thumb" onclick="openLightbox('images/ramadan2.jpg')">
+  <img src="images/ramadan3.jpg" class="thumb" onclick="openLightbox('images/ramadan3.jpg')">
+  <img src="images/video-thumbnail.jpg" class="thumb video-thumb" onclick="openLightbox('images/ramadanv.mp4', true)">
+</div>
+</section>
+
+<section id="contact" style="margin-top:3rem;">
+<h2 style="color:var(--gold-soft);margin-bottom:1rem;">Menu Intégral</h2>
+<a href="https://greycorner.pages.dev/" target="_blank"
+ style="display:inline-block;background:var(--gold);padding:0.7rem 1.3rem;border-radius:10px;color:black;font-weight:600;">
+ Voir le menu complet »
+</a>
+</section>
+
+</main>
+
+</body>
+</html>
